@@ -1,5 +1,6 @@
 import React from 'react'
 
+/* This is the function to display clothing reccomendation on the fun fact page */
 function ClothesRec({message}) {
   return (
     <div>
