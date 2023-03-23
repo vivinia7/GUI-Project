@@ -96,9 +96,9 @@ function App() {
   }
 
   const formatBackground = () => {
-    if (!weather) return "from-cyan-700 to-blue-700";
+    if (!weather) return url("../images/china_wall.png");
     const threshold = units === "metric" ? 20 : 60;
-    if (weather.temp <= threshold) return "from-cyan-700 to-blue-700";
+    if (weather.temp <= threshold) return url("../images/china_wall.png");
 
     return "from-yellow-700 to-orange-700";
   };
