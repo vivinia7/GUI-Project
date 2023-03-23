@@ -8,6 +8,7 @@ import {
 } from "@iconscout/react-unicons";
 import { formatToLocalTime, iconUrlFromCode } from "../services/weatherService";
 
+/* This is the function to display the weather data */
 function TemperatureAndDetails({
   weather: {
     details,
