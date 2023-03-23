@@ -96,9 +96,19 @@ function App() {
   }
 
   const formatBackground = () => {
-    if (!weather) return url("../images/china_wall.png");
-    const threshold = units === "metric" ? 20 : 60;
-    if (weather.temp <= threshold) return url("../images/china_wall.png");
+    if (weather.temp) return url("vivinia7/GUI-Project/src/images/china_wall.png");
+    const threshold = units === "metric" ? 5 : 41;
+    if (weather.temp <= threshold) return url("vivinia7/GUI-Project/src/images/chicken Itza.png");
+    const threshold = units === "metric" ? 10 : 50;
+    if (weather.temp) return url("vivinia7/GUI-Project/src/images/Christ the redeemer.png");
+    const threshold = units === "metric" ? 15 : 59;
+    if (weather.temp) return url("vivinia7/GUI-Project/src/images/Colosseum.png");
+    const threshold = units === "metric" ? 20 : 68;
+    if (weather.temp) return url("vivinia7/GUI-Project/src/images/machu_pichu.png");
+    const threshold = units === "metric" ? 25 : 77;
+    if (weather.temp) return url("vivinia7/GUI-Project/src/images/Petra.png");
+    const threshold = units === "metric" ? 30 : 86;
+    if (weather.temp) return url("vivinia7/GUI-Project/src/images/taj mahal.png");
 
     return "from-yellow-700 to-orange-700";
   };
