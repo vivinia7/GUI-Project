@@ -1,6 +1,5 @@
 import "./App.css";
-import TopButtons from "./components/TopButtons";
-import Inputs from "./components/Inputs";
+import FactButtons from "./components/FactButtons";
 import TimeAndLocation from "./components/TimeAndLocation";
 import TemperatureAndDetails from "./components/TemperatureAndDetails";
 import Forecast from "./components/Forecast";
@@ -9,7 +8,7 @@ import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Funfact from "./components/Funfact";
-import HomeButton from "./components/HomeButton";
+import ForecastButton from "./components/ForecastButton";
 import ClothesRec from "./components/ClothesRec";
 
 
@@ -23,11 +22,11 @@ function App() {
   const [units, setUnits] = useState("metric");
   const [weather, setWeather] = useState(null);
 
+  /* This array contains each fun facts of the seven wonders of the world and the temperature threshold */
   const info = [
     {
       /* Great wall */
-      id: 1,
-      tempC: -5,
+      tempC: -5, 
       tempK: 23,
       fact: "There is a wide misconception that the Great Wall was built" + 
       " under the order of Emperor Qin Shi Huang (259 - 210BC), but it is not true." +
@@ -42,7 +41,6 @@ function App() {
     
     {
       /* Machu pichu */
-      id: 2,
       tempC: 0,
       tempK: 32,
       fact: "In 2007, Machu Picchu was voted one of the New Seven Wonders of the World. "+
@@ -59,7 +57,6 @@ function App() {
 
     {
       /* Taj mahal */
-      id: 3,
       tempC: 5,
       tempK: 41,
       fact: "The Taj Mahal, often regarded as the symbol of true love, has been attracting " +
@@ -75,7 +72,6 @@ function App() {
 
     {
       /* Christ The Redeemer */
-      id: 4,
       tempC: 10,
       tempK: 50,
       fact: "Christ the Redeemer is a statue of Jesus Christ, located in Rio de Janeiro, " +
@@ -92,7 +88,6 @@ function App() {
 
     {
       /* Petra */
-      id: 5,
       tempC: 15,
       tempK: 59,
       fact: "Petra is believed have been established in 312 BC, making it one of the " +
@@ -109,7 +104,6 @@ function App() {
 
     {
       /* Chichen Itza */
-      id: 6,
       tempC: 20,
       tempK: 68,
       fact: "Chichen Itza is an ancient Mayan city in the Yucatan peninsula of Mexico. It is " +
@@ -123,7 +117,6 @@ function App() {
 
     {
       /* Colosseum */
-      id: 7,
       tempC: 30,
       tempK: 86,
       fact: "The Colosseum was built between 72 A.D and 80 A.D under the Emperor Vespasian, in the heart " +
@@ -138,16 +131,12 @@ function App() {
     }
   ]
   
+  /* This is to fetch the weather data */
   useEffect(() => {
     const fetchWeather = async () => {
       const message = query.q ? query.q : "current location.";
 
-      /*toast.info("Fetching weather for " + message);*/
-
       await getFormattedWeatherData({ ...query, units }).then((data) => {
-        /*toast.success(
-          `Successfully fetched weather for ${data.name}, ${data.country}.`
-        );*/
 
         setWeather(data);
       });
@@ -156,7 +145,7 @@ function App() {
     fetchWeather();
   }, [query, units]);
 
-
+  /* To change the fun fact depending on the weather threshold */
   const factTurn = () => {
     if (weather.temp <= info[0].tempC) return info[0].fact;
     if (weather.temp > info[0].tempC && weather.temp <= info[1].tempC) return info[1].fact;
@@ -168,69 +157,57 @@ function App() {
 
   }
 
+  /* To recommend clothing suggestion depending on the temperature */
   const clothesReccomendation = () => {
     const cold = units === "metric" ? info[3].tempC : info[3].tempK ;
     const mild = units === "metric" ? info[4].tempC : info[4].tempK ;
-    if (weather.temp <= cold ) return "It's very cold outside. You should wear a thick jecket if going out.";
-    if (weather.temp > cold && weather.temp < mild) return "It's not too cold, but you should still wear a light jacket/coat if I were you."
+    if (weather.temp <= cold ) return "It's very cold outside. You should wear a thick jacket and scarfs if you're going out.";
+    if (weather.temp > cold && weather.temp < mild) return "It's not too cold, but you should still wear a light jacket/coat if I were you. It might get colder in the evening"
     if (weather.temp > mild) return "It's very warm outside, you will be needing your best shirt to show off to the world!"
   }
-  /*
+  
+  /* To change the background depending on the weather threshold */
   const formatBackground = () => {
     if (!weather) return "from-cyan-700 to-blue-700";
     const threshold = units === "metric" ? 20 : 60;
     if (weather.temp <= threshold) return "from-cyan-700 to-blue-700";
-
     return "from-yellow-700 to-orange-700";
-  };*/
-
-  const formatBackground = () => {
-    if (weather.temp) return url("../images/china_wall.png");
-    const threshold = units === "metric" ? 5 : 41;
-    if (weather.temp <= threshold) return url("../images/chicken Itza.png");
-    const threshold = units === "metric" ? 10 : 50;
-    if (weather.temp) return url("../images/Christ the redeemer.png");
-    const threshold = units === "metric" ? 15 : 59;
-    if (weather.temp) return url("../images/Colosseum.png");
-    const threshold = units === "metric" ? 20 : 68;
-    if (weather.temp) return url("../images/machu_pichu.png");
-    const threshold = units === "metric" ? 25 : 77;
-    if (weather.temp) return url("../images/Petra.png");
-    const threshold = units === "metric" ? 30 : 86;
-    if (weather.temp) return url("../images/taj mahal.png");
-
-    return "../images/Colosseum.png";
   };
-
+  
+  /* This is the index of the page to differentiate the forecast and fun fact page */
   const [currentIndex, setCurrentIndex] = useState(0)
 
+  /* Function for the next page fun fact button */
   function next() {
     const nextIndex = 1;
     setCurrentIndex(nextIndex);
   }
 
+  /* Function for the previous page forecast button */
   function prev() {
     setCurrentIndex(0);
   }
 
+  /* If the index is 1, go to the fun fact page with clothing reccomendation*/
   if (currentIndex === 1) {
     return (
       <div
-    className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}
+    className={`mx-auto max-w-screen-md mt-4 pt-5 pb-32 px-32 bg-gradient-to-br h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}
     > 
-      <HomeButton onClick={prev}/>
+      <ForecastButton onClick={prev}/>
       <Funfact message={factTurn()}/>
       <ClothesRec message={clothesReccomendation()} />
     </div>
     )
   }
 
+  /* Else, show the forecast page */
   return (
     <div
     className={`mx-auto max-w-screen-md mt-4 py-5 px-32 bg-gradient-to-br  h-fit shadow-xl shadow-gray-400 ${formatBackground()}`}
     >
-      <TopButtons onClick={next}/>
-      <Inputs />
+      <FactButtons onClick={next}/>
+      <div className="text-white flex flex-row text-3xl justify-center">Forecast</div>
 
       {weather && (
         <div>
