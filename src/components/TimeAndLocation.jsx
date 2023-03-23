@@ -1,6 +1,7 @@
 import React from "react";
 import { formatToLocalTime } from "../services/weatherService";
 
+/* This is the function to display the weather data */
 function TimeAndLocation({ weather: { dt, timezone, name, country } }) {
   return (
     <div>
