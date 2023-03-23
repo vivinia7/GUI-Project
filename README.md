@@ -1,4 +1,4 @@
-# READ ME!
+# HOW TO RUN 
 This is the official GUI Weather App repository.
 
 Please make sure you:
