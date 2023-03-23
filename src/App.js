@@ -110,7 +110,7 @@ function App() {
     const threshold = units === "metric" ? 30 : 86;
     if (weather.temp) return url("vivinia7/GUI-Project/src/images/taj mahal.png");
 
-    return "from-yellow-700 to-orange-700";
+    return "vivinia7/GUI-Project/src/images/Colosseum.png";
   };
 
   const [currentIndex, setCurrentIndex] = useState(0)
