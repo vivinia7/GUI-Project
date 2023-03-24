@@ -17,6 +17,7 @@ Please make sure you:
       
       
 9 Inside the index.css file(if not already there), add
+     
       @tailwind base;
       
       @tailwind components;
