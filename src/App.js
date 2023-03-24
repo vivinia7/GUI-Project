@@ -1,4 +1,3 @@
-import "./App.css";
 import FactButtons from "./components/FactButtons";
 import TimeAndLocation from "./components/TimeAndLocation";
 import TemperatureAndDetails from "./components/TemperatureAndDetails";
