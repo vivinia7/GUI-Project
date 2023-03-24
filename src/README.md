@@ -11,7 +11,7 @@ Please make sure you:
 6. `npm install -D tailwindcss`
 7. `npx tailwindcss init`
 
-8 If not alrady present in file, insert this into the tailwind.config.js file  (inside the `content[]` array)
+8 If not alrady present in file, insert this into the tailwind.config.js file  (inside the `content[]` array)add
       
       "./src/*/.{js,jsx,ts,tsx}"
       
