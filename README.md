@@ -12,12 +12,15 @@ Please make sure you:
 7. `npx tailwindcss init`
 
 8 If not alrady present in file, insert this into the tailwind.config.js file  (inside the `content[]` array)
+      
       "./src/*/.{js,jsx,ts,tsx}"
       
       
 9 Inside the index.css file(if not already there), add
       @tailwind base;
+      
       @tailwind components;
+      
       @tailwind utilities;
 
 7. And, run it `npm run start`
